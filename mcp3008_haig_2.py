@@ -30,7 +30,8 @@ def readadc(channel):
 
 while True:
     for i in range(8):
-        value = readadc(i)
-        print "%4d" % value,
+#        value = readadc(i)
+#        print "%4d" % value,
+         values[i] = readadc(i)
+    print('| {0:>4} | {1:>4} | {2:>4} | {3:>4} | {4:>4} | {5:>4} | {6:>4} | {7:>4} |'.format(*values))
     time.sleep(0.2)
-    print;
