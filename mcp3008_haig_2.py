@@ -36,11 +36,10 @@ def readadc(channel):
 while True:
     values = [0]*8
     for i in range(8):
-#        value = readadc(i)
-#        print "%4d" % value,
          values[i] = readadc(i)
          message = str(i) + ' ' + str(values[i]) + ';' # make a string for use with Pdsend
-         print(message)
+#         print(message)
          send2Pd(message)
-    print('| {0:>4} | {1:>4} | {2:>4} | {3:>4} | {4:>4} | {5:>4} | {6:>4} | {7:>4} |'.format(*values))
+# consider creating a message that has all values in one string rather than separate messages
+#    print('| {0:>4} | {1:>4} | {2:>4} | {3:>4} | {4:>4} | {5:>4} | {6:>4} | {7:>4} |'.format(*values))
     time.sleep(0.2)
