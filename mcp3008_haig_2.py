@@ -4,6 +4,7 @@
 # Modern Device
 # www.moderndevice.com
 
+import os        # import os for sending messages to PD
 import spidev    # import the spidev module
 import time      # import time for the sleep function
  
@@ -12,6 +13,10 @@ spi = spidev.SpiDev()
 spi.open(0,0)
 spi.max_speed_hz=1000000
 
+def send2Pd(message=''):
+    # Send a message to Pd
+    os.system("echo '" + message + "' | pdsend 3000")
+   
 def readadc(channel):
     if channel > 7 or channel < 0:
         return -1
@@ -34,5 +39,8 @@ while True:
 #        value = readadc(i)
 #        print "%4d" % value,
          values[i] = readadc(i)
+         message = i + ' ' + str(values[i]) + ';' # make a string for use with Pdsend
+         print(message)
+         send2Pd(message)
     print('| {0:>4} | {1:>4} | {2:>4} | {3:>4} | {4:>4} | {5:>4} | {6:>4} | {7:>4} |'.format(*values))
     time.sleep(0.2)
