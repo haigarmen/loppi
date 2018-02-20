@@ -29,6 +29,7 @@ def readadc(channel):
     return v;
 
 while True:
+    values = [0]*8
     for i in range(8):
 #        value = readadc(i)
 #        print "%4d" % value,
