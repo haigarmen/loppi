@@ -1,9 +1,5 @@
 #!/usr/bin/python
 
-# Lots of Pots Board Analog to Digital Converter test
-# Modern Device
-# www.moderndevice.com
-
 import os        # import os for sending messages to PD
 import spidev    # import the spidev module
 import time      # import time for the sleep function
