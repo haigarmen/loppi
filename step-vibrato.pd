@@ -1,18 +1,18 @@
-#N canvas 521 32 709 700 10;
+#N canvas 348 100 1080 700 10;
 #X obj 324 243 adc~;
 #X obj 324 270 +~;
 #X obj 42 407 dac~;
 #X obj 133 184 hsl 200 25 0.5 30 1 1 empty empty vibrato-speed 20 12
-0 14 -228856 -260097 -1 0 0;
+0 14 -228856 -260097 -1 1842 0;
 #X obj 66 317 hsl 200 25 0 1 0 0 empty empty output-level 20 12 0 14
--228856 -260097 -1 17100 1;
+-228856 -260097 -1 18909 1;
 #X floatatom 77 354 5 0 0 0 - - -, f 5;
 #X obj 42 355 *~ 0;
 #X text 355 240 input from soundcard;
 #X obj 324 298 delwrite~ \$0-delay 2000;
 #X obj 42 287 vd~ \$0-delay 2000;
 #X obj 45 115 hsl 450 25 0 40 0 1 empty empty vibrato-depth 20 12 0
-14 -228856 -260097 -1 0 0;
+14 -228856 -260097 -1 14338 0;
 #X floatatom 141 218 5 0 0 0 - - -, f 5;
 #X obj 42 261 *~;
 #X msg 324 387 \; pd dsp 1;
@@ -77,6 +77,94 @@ lower tone is negative so the sound is played backwards.;
 #X text 42 601 A few sweet spots appear on the vibrato depth scale
 \, where undertone and overtone harmonize with the original.;
 #X text 41 650 Haig Armen Feb 2018;
+#X obj 689 117 hsl 80 15 0 1023 0 0 empty empty empty -2 -8 0 10 -228856
+-1 -1 2525 1;
+#X obj 686 195 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-228856 -1 -1 12.7734 256;
+#X obj 686 141 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-228856 -1 -1 327 256;
+#X obj 686 166 mapper, f 12;
+#X obj 597 747 netreceive 3000;
+#X obj 597 811 s p1;
+#X obj 638 811 s p2;
+#X obj 680 810 s p3;
+#X obj 597 780 route 0 1 2 3, f 16;
+#X obj 726 810 s p4;
+#X text 594 710 Receive messages from Python and route them to the
+proper receive objects;
+#X text 682 94 input pot 1;
+#X text 780 94 pot range;
+#X text 782 156 new range;
+#X obj 687 255 hsl 80 15 0 1023 0 0 empty empty empty -2 -8 0 10 -228856
+-1 -1 62 1;
+#X obj 684 333 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-228856 -1 -1 0.730469 256;
+#X obj 684 279 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-228856 -1 -1 8 256;
+#X obj 684 304 mapper, f 12;
+#X text 680 232 input pot 2;
+#X obj 595 116 r p1;
+#X obj 598 255 r p2;
+#X obj 595 145 unpack;
+#X obj 598 284 unpack;
+#X text 826 116 low, f 5;
+#X text 827 139 high, f 5;
+#X text 828 177 low, f 5;
+#X text 829 200 high, f 5;
+#X msg 783 114 0;
+#X msg 784 137 1024;
+#X text 783 235 pot range;
+#X text 785 297 new range;
+#X text 829 257 low, f 5;
+#X text 830 280 high, f 5;
+#X text 831 318 low, f 5;
+#X text 832 341 high, f 5;
+#X msg 786 255 0;
+#X msg 787 278 1024;
+#X obj 690 407 hsl 80 15 0 1023 0 0 empty empty empty -2 -8 0 10 -228856
+-1 -1 7514 1;
+#X obj 687 485 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-228856 -1 -1 0.950195 256;
+#X obj 687 431 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-228856 -1 -1 973 256;
+#X obj 687 456 mapper, f 12;
+#X obj 601 436 unpack;
+#X text 786 387 pot range;
+#X text 788 449 new range;
+#X text 832 409 low, f 5;
+#X text 833 432 high, f 5;
+#X text 834 470 low, f 5;
+#X text 835 493 high, f 5;
+#X msg 789 407 0;
+#X msg 790 430 1024;
+#X text 683 384 input pot 3;
+#X obj 601 407 r p3;
+#X obj 690 545 hsl 80 15 0 1023 0 0 empty empty empty -2 -8 0 10 -228856
+-1 -1 4039 1;
+#X obj 687 623 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-228856 -1 -1 0 256;
+#X obj 687 569 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-228856 -1 -1 523 256;
+#X obj 687 594 mapper, f 12;
+#X obj 601 574 unpack;
+#X text 786 525 pot range;
+#X text 788 587 new range;
+#X text 832 547 low, f 5;
+#X text 833 570 high, f 5;
+#X text 834 608 low, f 5;
+#X text 835 631 high, f 5;
+#X msg 789 606 1000;
+#X msg 790 631 250;
+#X msg 789 545 0;
+#X msg 790 568 1024;
+#X text 683 522 input pot 4;
+#X obj 601 545 r p4;
+#X msg 783 175 0;
+#X msg 784 200 40;
+#X msg 786 316 0.5;
+#X msg 787 341 30;
+#X msg 789 468 0;
+#X msg 790 493 1;
 #X connect 0 0 1 0;
 #X connect 0 1 1 1;
 #X connect 1 0 8 0;
@@ -96,3 +184,47 @@ lower tone is negative so the sound is played backwards.;
 #X connect 23 0 12 0;
 #X connect 24 0 2 0;
 #X connect 24 0 2 1;
+#X connect 30 0 32 0;
+#X connect 31 0 10 0;
+#X connect 32 0 33 0;
+#X connect 33 0 31 0;
+#X connect 34 0 38 0;
+#X connect 38 0 35 0;
+#X connect 38 1 36 0;
+#X connect 38 2 37 0;
+#X connect 38 3 39 0;
+#X connect 44 0 46 0;
+#X connect 45 0 3 0;
+#X connect 46 0 47 0;
+#X connect 47 0 45 0;
+#X connect 49 0 51 0;
+#X connect 50 0 52 0;
+#X connect 51 0 30 0;
+#X connect 52 0 44 0;
+#X connect 57 0 33 1;
+#X connect 58 0 33 2;
+#X connect 65 0 47 1;
+#X connect 66 0 47 2;
+#X connect 67 0 69 0;
+#X connect 68 0 4 0;
+#X connect 69 0 70 0;
+#X connect 70 0 68 0;
+#X connect 71 0 67 0;
+#X connect 78 0 70 1;
+#X connect 79 0 70 2;
+#X connect 81 0 71 0;
+#X connect 82 0 84 0;
+#X connect 84 0 85 0;
+#X connect 85 0 83 0;
+#X connect 86 0 82 0;
+#X connect 93 0 85 3;
+#X connect 94 0 85 4;
+#X connect 95 0 85 1;
+#X connect 96 0 85 2;
+#X connect 98 0 86 0;
+#X connect 99 0 33 3;
+#X connect 100 0 33 4;
+#X connect 101 0 47 3;
+#X connect 102 0 47 4;
+#X connect 103 0 70 3;
+#X connect 104 0 70 4;
