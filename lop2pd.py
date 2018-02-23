@@ -3,7 +3,7 @@
 import os        # import os for sending messages to PD
 import spidev    # import the spidev module
 import time      # import time for the sleep function
- 
+
 # Open SPI bus
 spi = spidev.SpiDev()
 spi.open(0,0)
@@ -11,8 +11,8 @@ spi.max_speed_hz=1000000
 
 def send2Pd(message=''):
     # Send a message to Pd
-    os.system("echo '" + message + "' | pdsend 3000")
-   
+    os.system("echo '" + message + "' | pdsend 3000 localhost udp")
+
 def readadc(channel):
     if channel > 7 or channel < 0:
         return -1
@@ -23,8 +23,8 @@ def readadc(channel):
     # byte 3: don't care
     r = spi.xfer2([1, 8 + channel << 4, 0])
 
-    # Three bytes are returned; the data (0-1023) is in the 
-    # lower 3 bits of byte 2, and byte 3 (datasheet figure 6-1)    
+    # Three bytes are returned; the data (0-1023) is in the
+    # lower 3 bits of byte 2, and byte 3 (datasheet figure 6-1)
     v = ((r[1] & 3) << 8) + r[2]
 
     return v;
