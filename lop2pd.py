@@ -37,7 +37,7 @@ def readadc(channel):
     return v;
 
 while True:
-""""    input_right = GPIO.input(4)
+'''    input_right = GPIO.input(4)
     input_left = GPIO.input(17)
     input_down = GPIO.input(18)
     input_up = GPIO.input(27)
@@ -62,7 +62,8 @@ while True:
         send2Pd(message)
         time.sleep(0.2)
     values = [0]*8
-"""
+'''
+    
 for i in range(8):
         values[i] = readadc(i)
         message = str(i) + ' ' + str(values[i]) + ';' # make a string for use with Pdsend
