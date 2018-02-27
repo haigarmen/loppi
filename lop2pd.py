@@ -3,15 +3,18 @@
 import os        # import os for sending messages to PD
 import spidev    # import the spidev module
 import time      # import time for the sleep function
-import RPi.GPIO as GPIO
+#import RPi.GPIO as GPIO
 
 # Open SPI bus
 spi = spidev.SpiDev()
 spi.open(0,0)
 spi.max_speed_hz=1000000
 
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+# GPIO.setmode(GPIO.BCM)
+# GPIO.setup(4, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+# GPIO.setup(17, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+# GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+# GPIO.setup(27, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 def send2Pd(message=''):
     # Send a message to Pd
@@ -34,13 +37,33 @@ def readadc(channel):
     return v;
 
 while True:
-    while True:
-        input_state = GPIO.input(18)
-        if input_state == False:
-            print('Button Pressed')
-            time.sleep(0.2)
+""""    input_right = GPIO.input(4)
+    input_left = GPIO.input(17)
+    input_down = GPIO.input(18)
+    input_up = GPIO.input(27)
+    
+    
+    if input_right == False:
+#        print('Right Pressed')
+        message = '8 r;' # make a string for use with Pdsend
+        print(message)
+        send2Pd(message)
+        time.sleep(0.2)
+    if input_left == False:
+#        print(message)
+#        send2Pd(message)
+        time.sleep(0.2)
+    if input_down == False:
+#        print(message)
+#        send2Pd(message)
+        time.sleep(0.2)
+    if input_up == False:
+#        print(message)
+        send2Pd(message)
+        time.sleep(0.2)
     values = [0]*8
-    for i in range(8):
+"""
+for i in range(8):
         values[i] = readadc(i)
         message = str(i) + ' ' + str(values[i]) + ';' # make a string for use with Pdsend
         print(message)
