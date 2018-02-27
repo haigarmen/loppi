@@ -1,18 +1,18 @@
-#N canvas 347 106 1080 700 10;
+#N canvas 85 108 1080 700 10;
 #X obj 324 243 adc~;
 #X obj 324 270 +~;
 #X obj 42 407 dac~;
 #X obj 133 184 hsl 200 25 0.5 30 1 1 empty empty vibrato-speed 20 12
-0 14 -228856 -260097 -1 0 0;
+0 14 -228856 -260097 -1 16792 0;
 #X obj 66 317 hsl 200 25 0 1 0 0 empty empty output-level 20 12 0 14
--228856 -260097 -1 17179 1;
+-228856 -260097 -1 12593 1;
 #X floatatom 77 354 5 0 0 0 - - -, f 5;
 #X obj 42 355 *~ 0;
 #X text 355 240 input from soundcard;
 #X obj 324 298 delwrite~ \$0-delay 2000;
 #X obj 42 287 vd~ \$0-delay 2000;
 #X obj 45 115 hsl 450 25 0 40 0 1 empty empty vibrato-depth 20 12 0
-14 -228856 -260097 -1 0 0;
+14 -228856 -260097 -1 13593 0;
 #X floatatom 141 218 5 0 0 0 - - -, f 5;
 #X obj 42 261 *~;
 #X msg 324 387 \; pd dsp 1;
@@ -78,11 +78,11 @@ lower tone is negative so the sound is played backwards.;
 \, where undertone and overtone harmonize with the original.;
 #X text 41 650 Haig Armen Feb 2018;
 #X obj 689 117 hsl 80 15 0 1023 0 0 empty empty empty -2 -8 0 10 -228856
--1 -1 0 1;
+-1 -1 2394 1;
 #X obj 686 195 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--228856 -1 -1 0 256;
+-228856 -1 -1 12.1094 256;
 #X obj 686 141 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--228856 -1 -1 0 256;
+-228856 -1 -1 310 256;
 #X obj 686 166 mapper, f 12;
 #X obj 597 747 netreceive 3000;
 #X obj 597 811 s p1;
@@ -96,11 +96,11 @@ proper receive objects;
 #X text 780 94 pot range;
 #X text 782 156 new range;
 #X obj 687 255 hsl 80 15 0 1023 0 0 empty empty empty -2 -8 0 10 -228856
--1 -1 0 1;
+-1 -1 4108 1;
 #X obj 684 333 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--228856 -1 -1 0.5 256;
+-228856 -1 -1 15.8262 256;
 #X obj 684 279 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--228856 -1 -1 0 256;
+-228856 -1 -1 532 256;
 #X obj 684 304 mapper, f 12;
 #X text 680 232 input pot 2;
 #X obj 595 116 r p1;
@@ -122,11 +122,11 @@ proper receive objects;
 #X msg 786 255 0;
 #X msg 787 278 1024;
 #X obj 690 407 hsl 80 15 0 1023 0 0 empty empty empty -2 -8 0 10 -228856
--1 -1 6827 1;
+-1 -1 5004 1;
 #X obj 687 485 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--228856 -1 -1 0.863281 256;
+-228856 -1 -1 0.632812 256;
 #X obj 687 431 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--228856 -1 -1 884 256;
+-228856 -1 -1 648 256;
 #X obj 687 456 mapper, f 12;
 #X obj 601 436 unpack;
 #X text 786 387 pot range;
@@ -140,11 +140,11 @@ proper receive objects;
 #X text 683 384 input pot 3;
 #X obj 601 407 r p3;
 #X obj 690 545 hsl 80 15 0 1023 0 0 empty empty empty -2 -8 0 10 -228856
--1 -1 1653 1;
+-1 -1 3962 1;
 #X obj 687 623 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--228856 -1 -1 0 256;
+-228856 -1 -1 624.268 256;
 #X obj 687 569 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--228856 -1 -1 214 256;
+-228856 -1 -1 513 256;
 #X obj 687 594 mapper, f 12;
 #X obj 601 574 unpack;
 #X text 786 525 pot range;
