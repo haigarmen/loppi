@@ -41,7 +41,7 @@ while True:
 #         print(message)
          send2Pd(message)
 # consider creating a message that has all values in one string rather than separate messages
-#    print('| {0:>4} | {1:>4} | {2:>4} | {3:>4} | {4:>4} | {5:>4} | {6:>4} | {7:>4} |'.format(*values))
+   print('| {0:>4} | {1:>4} | {2:>4} | {3:>4} | {4:>4} | {5:>4} | {6:>4} | {7:>4} |'.format(*values))
     while True:
         input_state = GPIO.input(18)
         if input_state == False:
