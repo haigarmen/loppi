@@ -3,11 +3,15 @@
 import os        # import os for sending messages to PD
 import spidev    # import the spidev module
 import time      # import time for the sleep function
+import RPi.GPIO as GPIO
 
 # Open SPI bus
 spi = spidev.SpiDev()
 spi.open(0,0)
 spi.max_speed_hz=1000000
+
+# GPIO.setmode(GPIO.BCM)
+GPIO.setup(4, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 def send2Pd(message=''):
     # Send a message to Pd
@@ -38,4 +42,9 @@ while True:
          send2Pd(message)
 # consider creating a message that has all values in one string rather than separate messages
 #    print('| {0:>4} | {1:>4} | {2:>4} | {3:>4} | {4:>4} | {5:>4} | {6:>4} | {7:>4} |'.format(*values))
+    while True:
+        input_state = GPIO.input(4)
+        if input_state == False:
+            print('Button Pressed')
+            time.sleep(0.2)
     time.sleep(0.2)
