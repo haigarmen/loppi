@@ -34,6 +34,11 @@ def readadc(channel):
     return v;
 
 while True:
+    while True:
+        input_state = GPIO.input(18)
+        if input_state == False:
+            print('Button Pressed')
+            time.sleep(0.2)
     values = [0]*8
     for i in range(8):
         values[i] = readadc(i)
@@ -42,9 +47,4 @@ while True:
         send2Pd(message)
 # consider creating a message that has all values in one string rather than separate messages
     # print('| {0:>4} | {1:>4} | {2:>4} | {3:>4} | {4:>4} | {5:>4} | {6:>4} | {7:>4} |'.format(*values))
-    while True:
-        input_state = GPIO.input(18)
-        if input_state == False:
-            print('Button Pressed')
-            time.sleep(0.2)
     time.sleep(0.2)
