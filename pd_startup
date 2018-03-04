@@ -1,0 +1,4 @@
+# this script goes into the /bin folder and is referred to from rc.local
+
+pd -nogui /home/pi/loppi/step-vibrato.pd
+/home/pi/loppi/lop2pd.py &
