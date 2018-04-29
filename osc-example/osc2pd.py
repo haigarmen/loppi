@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import socket
 import time      # import time for the sleep function
 import spidev    # import the spidev module

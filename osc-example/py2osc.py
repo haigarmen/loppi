@@ -1,4 +1,6 @@
-import OSC
+#!/usr/bin/python
+
+import OSC # install pyOSC library
 
 c = OSC.OSCClient()
 c.connect(('127.0.0.1', 9002))

@@ -47,7 +47,7 @@ while True:
     
     for i in range(8):
         values[i] = readadc(i)
-        message = str(i) + ' ' + str(values[i]) + '\n' # make a string for use with Pdsend
+        message = str(i) + ' ' + str(values[i]) + ';' # make a string for use with Pdsend
         if input_right == False:
 ##        print('Right Pressed')
             message = '8 r;' # make a string for use with Pdsend
@@ -67,5 +67,5 @@ while True:
 
         send2Pd(message)
 # consider creating a message that has all values in one string rather than separate messages
-    print('| {0:>4} | {1:>4} | {2:>4} | {3:>4} | {4:>4} | {5:>4} | {6:>4} | {7:>4} |'.format(*values))
+#    print('| {0:>4} | {1:>4} | {2:>4} | {3:>4} | {4:>4} | {5:>4} | {6:>4} | {7:>4} |'.format(*values))
     time.sleep(waitTime)
