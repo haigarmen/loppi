@@ -11,11 +11,11 @@ spi.open(0,0)
 spi.max_speed_hz=1000000
 
 IP="127.0.0.1"
-PORT=9000
+PORT=9002
 addr=(IP, PORT)
 EOL=';\n'
 
-waitTime = 0.2
+waitTime = 2
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(4, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(17, GPIO.IN, pull_up_down=GPIO.PUD_UP)
@@ -46,8 +46,9 @@ while True:
 
     for i in range(8):
         values[i] = readadc(i)
-        message = str(i) + ' ' + str(values[i]) + ';' # make a string for use with Pdsend
+#        message =  '/lop /pot'+str(i+1) + ' ' + str(values[i]) # make a string for use with Pdsend
+        message =  '/lop/pot' + '/' + str(values[i]) # make a string for use with Pdsend
         send2Pd(message)
-
-    print('| {0:>4} | {1:>4} | {2:>4} | {3:>4} | {4:>4} | {5:>4} | {6:>4} | {7:>4} |'.format(*values))
+        print(message)
+#    print('| {0:>4} | {1:>4} | {2:>4} | {3:>4} | {4:>4} | {5:>4} | {6:>4} | {7:>4} |'.format(*values))
     time.sleep(waitTime)
