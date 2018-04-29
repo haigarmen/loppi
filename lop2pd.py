@@ -16,9 +16,7 @@ GPIO.setup(4, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(17, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(27, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-
-
-    
+ 
 def send2Pd(message=''):
     # Send a message to Pd
     os.system("echo '" + message + "' | pdsend 3000")
@@ -49,7 +47,7 @@ while True:
     
     for i in range(8):
         values[i] = readadc(i)
-        message = str(i) + ' ' + str(values[i]) + ';' # make a string for use with Pdsend
+        message = str(i) + ' ' + str(values[i]) + '\n' # make a string for use with Pdsend
         if input_right == False:
 ##        print('Right Pressed')
             message = '8 r;' # make a string for use with Pdsend
