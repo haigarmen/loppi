@@ -41,7 +41,7 @@ while True:
     input_up = GPIO.input(27)
 
     values = [0]*8
-    
+
     for i in range(8):
         values[i] = readadc(i)
         message = str(i) + ' ' + str(values[i]) + ';' # make a string for use with Pdsend
@@ -49,4 +49,3 @@ while True:
 
     print('| {0:>4} | {1:>4} | {2:>4} | {3:>4} | {4:>4} | {5:>4} | {6:>4} | {7:>4} |'.format(*values))
     time.sleep(waitTime)
-    
