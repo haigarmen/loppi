@@ -10,7 +10,9 @@ spi = spidev.SpiDev()
 spi.open(0,0)
 spi.max_speed_hz=1000000
 
-waitTime = 0.2
+waitTime = 0.1
+bounceTime = 0.05
+
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(4, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(17, GPIO.IN, pull_up_down=GPIO.PUD_UP)
@@ -19,7 +21,7 @@ GPIO.setup(27, GPIO.IN, pull_up_down=GPIO.PUD_UP)
  
 def send2Pd(message=''):
     # Send a message to Pd
-    os.system("echo '" + message + "' | pdsend 3000")
+    os.system("echo '" + message + ";' | pdsend 3000")
 
 def readadc(channel):
     if channel > 7 or channel < 0:
@@ -43,29 +45,32 @@ while True:
     input_down = GPIO.input(18)
     input_up = GPIO.input(27)
 
-    values = [0]*8
+    values = [0]*9
     
     for i in range(8):
         values[i] = readadc(i)
-        message = str(i) + ' ' + str(values[i]) + ';' # make a string for use with Pdsend
         if input_right == False:
-##        print('Right Pressed')
-            message = '8 r;' # make a string for use with Pdsend
-            time.sleep(waitTime)
+#            print('Right Pressed')
+            values.insert(8,1)
+#            message = '8 1' # make a string for use with Pdsend
+            time.sleep(bounceTime)
         elif input_left == False:
 ##        print('Left Pressed')
-            message = '8 l;' # make a string for use with Pdsend
-            time.sleep(waitTime)
+            values.insert(8,2)
+            time.sleep(bounceTime)
         elif input_down == False:
 ##        print('Down Pressed')
-            message = '8 d;' # make a string for use with Pdsend
-            time.sleep(waitTime)
+            values.insert(8,3)
+            time.sleep(bounceTime)
         elif input_up == False:
 ##        print('Up Pressed')
-            message = '8 u;' # make a string for use with Pdsend
-            time.sleep(waitTime)
-
+            values.insert(8,4)
+            time.sleep(bounceTime)
+        else:
+            values.insert(9,0)
+        message = str(i) + ' ' + str(values[i]) # make a string for use with Pdsend
         send2Pd(message)
 # consider creating a message that has all values in one string rather than separate messages
-#    print('| {0:>4} | {1:>4} | {2:>4} | {3:>4} | {4:>4} | {5:>4} | {6:>4} | {7:>4} |'.format(*values))
+#    print('| {0:>4} | {1:>4} | {2:>4} | {3:>4} | {4:>4} | {5:>4} | {6:>4} | {7:>4} | {8:>4} |'.format(*values))
+#        print(message)
     time.sleep(waitTime)
