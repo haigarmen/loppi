@@ -10,8 +10,8 @@ spi = spidev.SpiDev()
 spi.open(0,0)
 spi.max_speed_hz=1000000
 
-waitTime = .02
-bounceTime = 0.02
+waitTime = .05
+bounceTime = 0.01
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(4, GPIO.IN, pull_up_down=GPIO.PUD_UP)
