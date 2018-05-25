@@ -1,82 +1,7 @@
-#N canvas 475 235 1279 923 10;
-#X obj 324 243 adc~;
-#X obj 324 266 +~;
-#X obj 41 453 dac~;
-#X obj 133 170 hsl 200 25 0.5 30 1 1 empty empty vibrato-speed 20 12
-0 14 -228856 -260097 -1 16519 0;
-#X obj 64 355 hsl 200 25 0 1 0 0 empty empty output-level 20 12 0 14
--228856 -260097 -1 0 1;
-#X floatatom 61 386 5 0 0 0 - - -, f 5;
-#X obj 41 407 *~ 0;
-#X text 355 240 input from soundcard;
-#X obj 324 289 delwrite~ \$0-delay 2000;
-#X obj 42 284 vd~ \$0-delay 2000;
-#X obj 41 106 hsl 450 25 0 40 0 1 empty empty vibrato-depth 20 12 0
-14 -228856 -260097 -1 21968 0;
-#X floatatom 133 193 5 0 0 0 - - -, f 5;
-#X obj 42 261 *~;
-#X msg 324 383 \; pd dsp 1;
-#X obj 324 360 loadbang;
-#X msg 404 398 \; pd dsp 0;
-#X floatatom 38 160 5 0 0 0 - - -, f 5;
-#X obj 38 137 pow 2;
-#X text 231 129 |;
-#X text 197 129 |;
-#X text 360 129 |;
-#X text 376 129 |;
-#N canvas 704 185 202 319 trapezoid 0;
-#X obj 25 124 phasor~ 1;
-#X obj 25 199 abs~;
-#X obj 25 176 *~ 2;
-#X obj 25 251 clip~ 0 0.5;
-#X obj 25 152 -~ 0.5;
-#X obj 25 19 inlet~;
-#X obj 25 282 outlet~;
-#X obj 25 225 -~ 0.25;
-#X text 74 43 resync;
-#X msg 76 98 0.625;
-#X msg 76 68 0.125;
-#X text 116 67 higher note;
-#X text 116 98 lower note;
-#X connect 0 0 4 0;
-#X connect 1 0 7 0;
-#X connect 2 0 1 0;
-#X connect 3 0 6 0;
-#X connect 4 0 2 0;
-#X connect 5 0 0 0;
-#X connect 7 0 3 0;
-#X connect 9 0 0 1;
-#X connect 10 0 0 1;
-#X restore 130 261 pd trapezoid;
-#N canvas 607 254 240 245 depth 0;
-#X obj 28 163 line~;
-#X msg 28 137 \$1 100;
-#X floatatom 54 111 5 0 0 0 - - -, f 5;
-#X obj 28 94 /;
-#X obj 36 66 t b f;
-#X obj 28 29 inlet;
-#X obj 69 29 inlet;
-#X obj 28 195 outlet~;
-#X connect 0 0 7 0;
-#X connect 1 0 0 0;
-#X connect 3 0 2 0;
-#X connect 3 0 1 0;
-#X connect 4 0 3 0;
-#X connect 4 1 3 1;
-#X connect 5 0 3 0;
-#X connect 6 0 4 0;
-#X restore 42 209 pd depth;
-#X obj 41 430 hip~ 40;
-#X text 35 503 Step-vibrato: step-wise modulation of variable speed
-delay. The modulator is a trapezoid \, therefore you get three different
-tones in a sequence of four notes:;
-#X text 35 549 original - lower tone - original - higher tone;
-#X text 35 569 Around vibrato depth value ~ 500 \, the lower tone has
-playback speed zero. With vibrato depth above 500 \, the speed of the
-lower tone is negative so the sound is played backwards.;
-#X text 35 628 A few sweet spots appear on the vibrato depth scale
-\, where undertone and overtone harmonize with the original.;
-#X text 36 701 Haig Armen Feb 2018;
+#N canvas 75 124 1012 1011 10;
+#X declare -path patches;
+#X obj 81 42 declare -path patches;
+#X obj 11 -33 alfaloop;
 #N canvas 651 582 680 532 tcpcom 0;
 #X obj 80 102 netreceive 3000;
 #X text 77 65 Receive messages from Python and route them to the proper
@@ -103,24 +28,24 @@ receive objects;
 #X connect 6 6 9 0;
 #X connect 6 7 10 0;
 #X connect 6 9 11 0;
-#X restore 578 115 pd tcpcom;
+#X restore 549 592 pd tcpcom;
 #N canvas 164 243 1078 750 routing 0;
 #X obj 139 72 hsl 80 15 0 1023 0 0 empty empty empty -2 -8 0 10 -228856
--1 -1 0 1;
+-1 -1 3853 1;
 #X obj 136 150 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--228856 -1 -1 0 256;
+-228856 -1 -1 19.4922 256;
 #X obj 136 96 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--228856 -1 -1 0 256;
+-228856 -1 -1 499 256;
 #X obj 136 121 mapper, f 12;
 #X text 132 49 input pot 1;
 #X text 230 49 pot range;
 #X text 232 111 new range;
 #X obj 137 210 hsl 80 15 0 1023 0 0 empty empty empty -2 -8 0 10 -228856
--1 -1 0 1;
+-1 -1 3830 1;
 #X obj 134 288 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--228856 -1 -1 0 256;
+-228856 -1 -1 14.7891 256;
 #X obj 134 234 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--228856 -1 -1 0 256;
+-228856 -1 -1 496 256;
 #X obj 134 259 mapper, f 12;
 #X text 130 187 input pot 2;
 #X obj 45 71 r p1;
@@ -142,11 +67,11 @@ receive objects;
 #X msg 236 210 0;
 #X msg 237 233 1024;
 #X obj 140 362 hsl 80 15 0 1023 0 0 empty empty empty -2 -8 0 10 -228856
--1 -1 0 1;
+-1 -1 3823 1;
 #X obj 137 440 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--228856 -1 -1 0 256;
+-228856 -1 -1 0.483398 256;
 #X obj 137 386 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--228856 -1 -1 0 256;
+-228856 -1 -1 495 256;
 #X obj 137 411 mapper, f 12;
 #X obj 51 391 unpack;
 #X text 236 342 pot range;
@@ -160,11 +85,11 @@ receive objects;
 #X text 133 339 input pot 3;
 #X obj 51 362 r p3;
 #X obj 140 500 hsl 80 15 0 1023 0 0 empty empty empty -2 -8 0 10 -228856
--1 -1 0 1;
+-1 -1 3962 1;
 #X obj 137 578 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--228856 -1 -1 0 256;
+-228856 -1 -1 63.624 256;
 #X obj 137 524 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--228856 -1 -1 0 256;
+-228856 -1 -1 513 256;
 #X obj 137 549 mapper, f 12;
 #X obj 51 529 unpack;
 #X text 236 480 pot range;
@@ -192,20 +117,20 @@ receive objects;
 #X obj 53 455 s pot3;
 #X obj 53 593 s pot4;
 #X obj 567 66 hsl 80 15 0 1023 0 0 empty empty empty -2 -8 0 10 -228856
--1 -1 0 1;
+-1 -1 3815 1;
 #X obj 564 144 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--228856 -1 -1 0 256;
+-228856 -1 -1 61.2676 256;
 #X obj 564 90 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--228856 -1 -1 0 256;
+-228856 -1 -1 494 256;
 #X obj 564 115 mapper, f 12;
 #X text 658 43 pot range;
 #X text 660 105 new range;
 #X obj 565 204 hsl 80 15 0 1023 0 0 empty empty empty -2 -8 0 10 -228856
--1 -1 0 1;
+-1 -1 3985 1;
 #X obj 562 282 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--228856 -1 -1 0 256;
+-228856 -1 -1 63.9961 256;
 #X obj 562 228 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--228856 -1 -1 0 256;
+-228856 -1 -1 516 256;
 #X obj 562 253 mapper, f 12;
 #X obj 473 94 unpack;
 #X obj 476 233 unpack;
@@ -224,11 +149,11 @@ receive objects;
 #X msg 664 204 0;
 #X msg 665 227 1024;
 #X obj 568 356 hsl 80 15 0 1023 0 0 empty empty empty -2 -8 0 10 -228856
--1 -1 0 1;
+-1 -1 3954 1;
 #X obj 565 434 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--228856 -1 -1 0 256;
+-228856 -1 -1 63.5 256;
 #X obj 565 380 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--228856 -1 -1 0 256;
+-228856 -1 -1 512 256;
 #X obj 565 405 mapper, f 12;
 #X obj 479 385 unpack;
 #X text 664 336 pot range;
@@ -240,11 +165,11 @@ receive objects;
 #X msg 667 356 0;
 #X msg 668 379 1024;
 #X obj 568 494 hsl 80 15 0 1023 0 0 empty empty empty -2 -8 0 10 -228856
--1 -1 0 1;
+-1 -1 4054 1;
 #X obj 565 572 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--228856 -1 -1 0 256;
+-228856 -1 -1 65.1123 256;
 #X obj 565 518 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--228856 -1 -1 0 256;
+-228856 -1 -1 525 256;
 #X obj 565 543 mapper, f 12;
 #X obj 479 523 unpack;
 #X text 664 474 pot range;
@@ -406,86 +331,60 @@ receive objects;
 #X connect 154 1 156 0;
 #X connect 154 2 157 0;
 #X connect 154 3 158 0;
-#X restore 654 116 pd routing;
-#X obj 38 83 r pot1;
-#X obj 133 170 r pot2;
-#X obj 61 332 r pot3;
-#X obj 578 172 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 0 1;
-#X obj 578 147 r pot1;
-#X obj 632 172 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 0 1;
-#X obj 632 147 r pot2;
-#X obj 684 172 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 0 1;
-#X obj 738 172 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 0 1;
-#X obj 684 147 r pot3;
-#X obj 738 147 r pot4;
-#X obj 791 172 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 0 1;
-#X obj 845 172 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 0 1;
-#X obj 897 172 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 0 1;
-#X obj 951 172 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 0 1;
-#X obj 791 147 r pot5;
-#X obj 845 147 r pot6;
-#X obj 897 147 r pot7;
-#X obj 951 147 r pot8;
-#X obj 582 332 r button1;
-#X obj 582 355 bang;
-#X obj 582 381 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X restore 625 593 pd routing;
+#X obj 549 649 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 1949 1;
+#X obj 549 624 r pot1;
+#X obj 603 649 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 1479 1;
+#X obj 603 624 r pot2;
+#X obj 655 649 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 48 1;
+#X obj 709 649 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 6362 1;
+#X obj 655 624 r pot3;
+#X obj 709 624 r pot4;
+#X obj 762 649 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 6127 1;
+#X obj 816 649 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 6400 1;
+#X obj 868 649 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 6350 1;
+#X obj 922 649 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 6511 1;
+#X obj 762 624 r pot5;
+#X obj 816 624 r pot6;
+#X obj 868 624 r pot7;
+#X obj 922 624 r pot8;
+#X obj 553 809 r button1;
+#X obj 553 832 bang;
+#X obj 553 858 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 663 355 bang;
-#X obj 663 378 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 634 832 bang;
+#X obj 634 855 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 740 354 bang;
-#X obj 740 378 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 711 831 bang;
+#X obj 711 855 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 824 355 bang;
-#X obj 824 380 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 795 832 bang;
+#X obj 795 857 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 663 332 r button2;
-#X obj 740 331 r button3;
-#X obj 824 331 r button4;
-#X connect 0 0 1 0;
-#X connect 0 1 1 1;
-#X connect 1 0 8 0;
-#X connect 3 0 11 0;
-#X connect 3 0 22 0;
-#X connect 3 0 23 1;
-#X connect 4 0 5 0;
-#X connect 4 0 6 1;
-#X connect 6 0 24 0;
-#X connect 9 0 6 0;
-#X connect 10 0 17 0;
-#X connect 12 0 9 0;
-#X connect 14 0 13 0;
-#X connect 17 0 16 0;
-#X connect 17 0 23 0;
-#X connect 22 0 12 1;
-#X connect 23 0 12 0;
-#X connect 24 0 2 0;
-#X connect 24 0 2 1;
-#X connect 32 0 10 0;
-#X connect 33 0 3 0;
-#X connect 34 0 4 0;
-#X connect 36 0 35 0;
-#X connect 38 0 37 0;
-#X connect 41 0 39 0;
-#X connect 42 0 40 0;
-#X connect 47 0 43 0;
-#X connect 48 0 44 0;
-#X connect 49 0 45 0;
-#X connect 50 0 46 0;
-#X connect 51 0 52 0;
-#X connect 52 0 53 0;
-#X connect 54 0 55 0;
-#X connect 56 0 57 0;
-#X connect 58 0 59 0;
-#X connect 60 0 54 0;
-#X connect 61 0 56 0;
-#X connect 62 0 58 0;
-#X coords 0 923 1 922 50 60 0;
+#X obj 634 809 r button2;
+#X obj 711 808 r button3;
+#X obj 795 808 r button4;
+#X connect 5 0 4 0;
+#X connect 7 0 6 0;
+#X connect 10 0 8 0;
+#X connect 11 0 9 0;
+#X connect 16 0 12 0;
+#X connect 17 0 13 0;
+#X connect 18 0 14 0;
+#X connect 19 0 15 0;
+#X connect 20 0 21 0;
+#X connect 21 0 22 0;
+#X connect 23 0 24 0;
+#X connect 25 0 26 0;
+#X connect 27 0 28 0;
+#X connect 29 0 23 0;
+#X connect 30 0 25 0;
+#X connect 31 0 27 0;
