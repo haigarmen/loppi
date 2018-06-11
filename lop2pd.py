@@ -14,18 +14,19 @@ waitTime = .05
 bounceTime = 0.01
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(4, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(17, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(27, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+## GPIO.setup(4, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(4, GPIO.IN)
+GPIO.setup(17, GPIO.IN)
+GPIO.setup(18, GPIO.IN)
+GPIO.setup(27, GPIO.IN)
  
 def send2Pd(message=''):
     # Send a message to Pd
-    os.system("echo '" + message + ";' | pdsend 3000")
+    os.system("echo '" + message + "' | pdsend 3000 localhost udp")
 
 def readadc(channel):
     if channel > 7 or channel < 0:
-        return -1
+        return -1 
 
     # spi.xfer2 sends three bytes and returns three bytes:
     # byte 1: the start bit (always 0x01)
@@ -45,37 +46,35 @@ while True:
     input_down = GPIO.input(18)
     input_up = GPIO.input(27)
 
-    values = [0]*9
+    values = [0]*8
     
     for i in range(8):
         values[i] = readadc(i)
         message = str(i) + ' ' + str(values[i]) # make a string for use with Pdsend
         send2Pd(message)
     if input_right == False:
-#            print('Right Pressed')
+        print('Right Pressed')
         message = '9 1'
         send2Pd(message)
         time.sleep(bounceTime)
     elif input_left == False:
-##        print('Left Pressed')
+        print('Left Pressed')
         message = '9 2'
         send2Pd(message)
-#        values.insert(8,21)
         time.sleep(bounceTime)
     elif input_down == False:
-##        print('Down Pressed')
+        print('Down Pressed')
         message = '9 3'
         send2Pd(message)
-#        values.insert(8,31)
         time.sleep(bounceTime)
     elif input_up == False:
-##        print('Up Pressed')
+        print('Up Pressed')
 #        values.insert(8,41)
         message = '9 4'
         send2Pd(message)
         time.sleep(bounceTime)
 
 # consider creating a message that has all values in one string rather than separate messages
-#    print('| {0:>4} | {1:>4} | {2:>4} | {3:>4} | {4:>4} | {5:>4} | {6:>4} | {7:>4} | {8:>4} |'.format(*values))
+#    print('| {0:>4} | {1:>4} | {2:>4} | {3:>4} | {4:>4} | {5:>4} | {6:>4} | {7:>4} |'.format(*values))
 #    print(message)
     time.sleep(waitTime)

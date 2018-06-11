@@ -19,7 +19,7 @@ GPIO.setup(pad2, GPIO.IN)
 GPIO.setup(pad3, GPIO.IN)
 GPIO.setup(pad4, GPIO.IN)
 
-subprocess.call("pd-extended yourpatch.pd &", shell=True)
+## subprocess.call("pd-extended yourpatch.pd &", shell=True)
 
 pad0alreadyPressed = False
 pad1alreadyPressed = False
