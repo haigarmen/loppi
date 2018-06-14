@@ -1,5 +1,5 @@
-#N canvas 117 94 1005 673 10;
-#N canvas 90 85 606 426 stuff 0;
+#N canvas 11 23 772 704 10;
+#N canvas 521 33 606 426 stuff 1;
 #X text 52 321 creating-order in alfaloop.pd: [pd stuff] / [engine]
 / [pd pd settings] / [pd ctl_huelle] / keys_midi activ/passive / show:keys_midi
 / theme-buttons / [pd info];
@@ -76,7 +76,7 @@
 #X obj 9 170 midictltank ducking \$0;
 #X obj 8 202 midictltank auto-over \$0;
 #X restore 52 34 pd miditank;
-#N canvas 75 474 450 300 keytank 0;
+#N canvas 16 240 450 300 keytank 0;
 #X obj 41 30 keyctltank rec \$0;
 #X obj 41 56 keyctltank over \$0;
 #X obj 41 82 keyctltank feedback+ \$0;
@@ -738,7 +738,7 @@
 #X connect 7 0 6 0;
 #X connect 8 0 4 1;
 #X restore 437 37 pd maxTableLength;
-#N canvas 888 215 450 300 start/stop_calc 0;
+#N canvas 830 215 450 300 start/stop_calc 0;
 #X obj 43 13 r \$0-recStart;
 #X obj 43 65 timer;
 #X obj 80 39 r \$0-recStop;
@@ -1423,30 +1423,29 @@ color 16 22;
 #X connect 3 0 2 0;
 #X connect 7 0 8 0;
 #X restore 251 160 pd graphics;
-#N canvas 636 218 866 430 midi_receive 0;
-#X obj 527 56 expr $f1/127;
-#X obj 377 56 expr $f1/127;
-#X obj 377 113 s \$0-ducking;
-#X obj 527 165 s \$0-feedback;
-#X obj 63 212 s \$0-recStart;
-#X obj 82 186 s \$0-recStop;
-#X obj 63 160 sel 1 0;
-#X obj 227 257 s \$0-overColor;
-#X obj 44 56 sel 127;
-#X obj 254 231 s \$0-over;
-#X obj 527 113 t f b;
-#X obj 554 139 s \$0-feedbackPre;
-#X obj 83 134 s \$0-recState;
-#X obj 44 30 r \$0-rec_ctl;
-#X obj 527 30 r \$0-feedback_ctl;
-#X obj 253 46 r \$0-over_ctl;
-#X obj 377 30 r \$0-ducking_ctl;
-#X obj 44 238 s \$0-recColor;
-#X obj 387 269 s \$0-record2diskColor;
-#X obj 377 295 sel 0 1;
-#X obj 396 321 s \$0-record2diskStart;
-#X obj 377 347 s \$0-record2diskStop;
-#N canvas 908 176 478 332 key_feedback 0;
+#N canvas 326 242 869 488 midi_receive 1;
+#X obj 485 52 expr $f1/127;
+#X obj 335 52 expr $f1/127;
+#X obj 335 109 s \$0-ducking;
+#X obj 485 161 s \$0-feedback;
+#X obj 38 313 s \$0-recStart;
+#X obj 57 287 s \$0-recStop;
+#X obj 38 261 sel 1 0;
+#X obj 185 364 s \$0-overColor;
+#X obj 19 157 sel 127;
+#X obj 212 338 s \$0-over;
+#X obj 485 109 t f b;
+#X obj 512 135 s \$0-feedbackPre;
+#X obj 58 235 s \$0-recState;
+#X obj 485 26 r \$0-feedback_ctl;
+#X obj 211 153 r \$0-over_ctl;
+#X obj 335 26 r \$0-ducking_ctl;
+#X obj 31 342 s \$0-recColor;
+#X obj 345 265 s \$0-record2diskColor;
+#X obj 335 291 sel 0 1;
+#X obj 354 317 s \$0-record2diskStart;
+#X obj 335 343 s \$0-record2diskStop;
+#N canvas 802 176 478 332 key_feedback 0;
 #X obj 233 30 r \$0-feedback+_ctl;
 #X obj 43 30 r \$0-feedback-_ctl;
 #X obj 68 165 r \$0-feedback;
@@ -1503,8 +1502,8 @@ color 16 22;
 #X connect 22 0 13 0;
 #X connect 23 0 16 0;
 #X connect 24 0 14 0;
-#X restore 693 30 pd key_feedback;
-#N canvas 396 184 478 385 key_over 0;
+#X restore 651 26 pd key_feedback;
+#N canvas 567 230 478 385 key_over 0;
 #X obj 42 191 f;
 #X obj 42 56 sel 127 0;
 #X msg 67 82 0;
@@ -1557,26 +1556,26 @@ color 16 22;
 #X connect 20 0 13 0;
 #X connect 21 0 18 0;
 #X connect 22 0 12 0;
-#X restore 693 56 pd key_over;
-#X obj 44 108 t f f f;
-#X obj 557 292 line;
-#X obj 567 318 s \$0-ducking;
-#X obj 557 344 s \$0-feedback;
-#X obj 227 205 t f f;
-#X obj 44 264 s \$0-recStateLate;
-#X obj 264 126 r \$0-automatic;
-#X obj 227 179 noguitgl;
-#X obj 377 243 noguitgl;
-#X obj 44 82 noguitgl;
-#X obj 377 217 r \$0-rec2diskCtl;
-#X obj 693 118 t b;
-#X obj 693 144 s \$0-rec2diskCtl;
-#X obj 693 92 r \$0-hradio2recCtl;
-#X obj 557 216 loadbang;
-#X obj 190 98 sel 127 0;
-#X msg 190 126 1;
-#X msg 227 126 0;
-#X msg 557 268 1 750;
+#X restore 651 52 pd key_over;
+#X obj 19 209 t f f f;
+#X obj 515 288 line;
+#X obj 525 314 s \$0-ducking;
+#X obj 515 340 s \$0-feedback;
+#X obj 185 312 t f f;
+#X obj 19 365 s \$0-recStateLate;
+#X obj 222 233 r \$0-automatic;
+#X obj 185 286 noguitgl;
+#X obj 335 239 noguitgl;
+#X obj 19 183 noguitgl;
+#X obj 335 213 r \$0-rec2diskCtl;
+#X obj 651 114 t b;
+#X obj 651 140 s \$0-rec2diskCtl;
+#X obj 651 88 r \$0-hradio2recCtl;
+#X obj 515 212 loadbang;
+#X obj 148 205 sel 127 0;
+#X msg 148 233 1;
+#X msg 185 233 0;
+#X msg 515 264 1 750;
 #N canvas 130 72 358 292 recFirst 0;
 #X obj 56 176 spigot;
 #X obj 99 150 change;
@@ -1596,53 +1595,70 @@ color 16 22;
 #X connect 5 0 2 0;
 #X connect 6 0 4 0;
 #X connect 7 0 0 0;
-#X restore 190 72 pd recFirst;
-#X obj 557 242 del 1000;
-#X obj 697 267 s \$0-autooverCtl;
-#X obj 697 188 r \$0-auto-over_ctl;
-#X obj 697 241 noguitgl;
-#X obj 697 215 sel 127;
+#X restore 148 179 pd recFirst;
+#X obj 515 238 del 1000;
+#X obj 655 263 s \$0-autooverCtl;
+#X obj 655 184 r \$0-auto-over_ctl;
+#X obj 655 237 noguitgl;
+#X obj 655 211 sel 127;
+#X obj 19 131 r \$0-rec_ctl;
+#X obj 8 77 r recBtn;
+#X obj 101 103 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 9 102 change 127;
+#X obj 269 98 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 190 105 change 127;
+#X obj 193 80 r overBtn;
+#X obj 506 85 r feedbackValue;
 #X connect 0 0 10 0;
 #X connect 1 0 2 0;
 #X connect 6 0 4 0;
 #X connect 6 1 5 0;
-#X connect 8 0 33 0;
-#X connect 8 0 43 0;
+#X connect 8 0 32 0;
+#X connect 8 0 42 0;
 #X connect 10 0 3 0;
 #X connect 10 1 11 0;
-#X connect 13 0 8 0;
-#X connect 14 0 0 0;
-#X connect 15 0 43 1;
-#X connect 16 0 1 0;
-#X connect 19 0 21 0;
-#X connect 19 1 20 0;
-#X connect 24 0 17 0;
-#X connect 24 0 29 0;
-#X connect 24 1 6 0;
-#X connect 24 2 12 0;
-#X connect 25 0 27 0;
-#X connect 25 0 26 0;
-#X connect 28 0 7 0;
-#X connect 28 1 9 0;
-#X connect 30 0 31 0;
-#X connect 31 0 28 0;
-#X connect 32 0 18 0;
-#X connect 32 0 19 0;
-#X connect 33 0 24 0;
-#X connect 34 0 32 0;
-#X connect 35 0 36 0;
-#X connect 37 0 35 0;
-#X connect 38 0 44 0;
-#X connect 39 0 40 0;
-#X connect 39 1 41 0;
-#X connect 40 0 31 0;
-#X connect 41 0 31 0;
-#X connect 42 0 25 0;
-#X connect 43 0 39 0;
-#X connect 44 0 42 0;
-#X connect 46 0 48 0;
-#X connect 47 0 45 0;
-#X connect 48 0 47 0;
+#X connect 13 0 0 0;
+#X connect 14 0 42 1;
+#X connect 15 0 1 0;
+#X connect 18 0 20 0;
+#X connect 18 1 19 0;
+#X connect 23 0 16 0;
+#X connect 23 0 28 0;
+#X connect 23 1 6 0;
+#X connect 23 2 12 0;
+#X connect 24 0 26 0;
+#X connect 24 0 25 0;
+#X connect 27 0 7 0;
+#X connect 27 1 9 0;
+#X connect 29 0 30 0;
+#X connect 30 0 27 0;
+#X connect 31 0 17 0;
+#X connect 31 0 18 0;
+#X connect 32 0 23 0;
+#X connect 33 0 31 0;
+#X connect 34 0 35 0;
+#X connect 36 0 34 0;
+#X connect 37 0 43 0;
+#X connect 38 0 39 0;
+#X connect 38 1 40 0;
+#X connect 39 0 30 0;
+#X connect 40 0 30 0;
+#X connect 41 0 24 0;
+#X connect 42 0 38 0;
+#X connect 43 0 41 0;
+#X connect 45 0 47 0;
+#X connect 46 0 44 0;
+#X connect 47 0 46 0;
+#X connect 48 0 8 0;
+#X connect 49 0 50 0;
+#X connect 49 0 51 0;
+#X connect 51 0 8 0;
+#X connect 53 0 42 1;
+#X connect 54 0 52 0;
+#X connect 54 0 53 0;
+#X connect 55 0 10 0;
 #X restore 251 108 pd midi_receive;
 #N canvas 667 50 350 130 audio 0;
 #N canvas 356 401 843 302 input_and_output 0;
@@ -2024,7 +2040,7 @@ connect 0 0 1 0 \; pd-\$2-audioHome connect 2 0 4 0 \;;
 #X connect 12 0 13 0;
 #X connect 13 0 10 0;
 #X restore 91 136 pd auto_on_off;
-#N canvas 962 162 556 400 auto4rec 0;
+#N canvas 724 162 556 400 auto4rec 0;
 #X obj 146 60 inlet;
 #X obj 208 126 inlet;
 #X obj 191 86 r \$0-overfadeInCtl;
@@ -3018,7 +3034,7 @@ connect 0 0 1 0 \; pd-\$2-audioHome connect 2 0 4 0 \;;
 #X connect 28 0 23 0;
 #X connect 28 0 19 0;
 #X restore 251 238 pd info;
-#N canvas 715 50 742 535 latency 0;
+#N canvas 538 50 742 535 latency 0;
 #X obj 360 225 switch~;
 #X msg 360 137 1;
 #X obj 416 139 r \$0-latencySwitchOff;
@@ -3200,7 +3216,7 @@ connect 0 0 1 0 \; pd-\$2-latencyHome connect 2 0 3 0 \;;
 #X msg 62 81 \; \$1-feedback_ctl 0 \; \$1-ducking_ctl 0 \; pd dsp 1
 \; \$1-rec_ctl 127;
 #X msg 53 196 \; \$1-rec_ctl 127 \; pd dsp 1;
-#N canvas 871 330 423 225 add_ms/s_to_canvas 0;
+#N canvas 857 330 423 225 add_ms/s_to_canvas 0;
 #X obj 21 33 r \$0-maxLengthCtl;
 #X obj 21 59 pipe 100;
 #X obj 21 85 pack f \$0;
@@ -3224,8 +3240,8 @@ connect 0 0 1 0 \; pd-\$2-latencyHome connect 2 0 3 0 \;;
 #N canvas 0 50 450 300 cpu_load 0;
 #X obj 100 100 cnv 12 105 14 empty \$0-settingsFont empty 108 10 0
 11 -262144 -262144 0;
-#X obj 100 101 cnv 1 7 12 \$0-loadMeterCanvas \$0-loadMeterCanvasIn
-cpu:3% 111 6 0 10 -99865 -262144 0;
+#X obj 100 101 cnv 1 11 12 \$0-loadMeterCanvas \$0-loadMeterCanvasIn
+cpu:7% 111 6 0 10 -99865 -262144 0;
 #X obj 100 100 cnv 4 4 14 empty \$0-settingsFont empty 108 10 0 11
 -262144 -262144 0;
 #X obj 100 100 cnv 3 3 14 empty \$0-settingsBg empty 20 12 0 14 -99865
@@ -3323,7 +3339,7 @@ stereo 5 9 0 10 -262144 -1 0;
 -99865 -262144 0;
 #X obj 8 200 hradio 38 1 0 5 \$0-hradio2recCtl empty empty 0 -8 0 10
 -262144 -1 -1 0;
-#X obj 226 60 cnv 15 210 38 empty \$0-delNowCanvas delay:641 6 20 0
+#X obj 226 60 cnv 15 210 38 empty \$0-delNowCanvas delay:348 6 20 0
 11 -262144 -1 0;
 #X obj 225 120 cnv 15 212 119 empty \$0-settingsBg fades(over/ducking)
 7 10 0 11 -99865 -262144 0;
@@ -3373,8 +3389,8 @@ stereo 5 9 0 10 -262144 -1 0;
 #X coords 0 -1 1 1 662 239 2 0 0;
 #X restore 0 336 pd settings;
 #N canvas 113 114 664 640 ctl_huelle 0;
-#X obj 0 19 midis 3708;
-#X obj 0 0 clearall Midi 3708;
+#X obj 0 19 keys 1004;
+#X obj 0 0 clearall Key 1004;
 #X coords 0 -1 1 1 306 192 2 0 0;
 #X restore 676 382 pd ctl_huelle;
 #N canvas 0 50 611 453 ctl_panel 0;
@@ -3392,40 +3408,40 @@ stereo 5 9 0 10 -262144 -1 0;
 #X msg 309 321 \; \$1-midiStatusCanvas color 0 10;
 #X obj 100 100 cnv 15 101 25 empty \$0-midiStatusCanvas midi 40 9 0
 10 -262144 -1 0;
-#X obj 119 116 cnv 1 2 7 empty \$0-midiIconIn empty 20 12 0 14 -1 -262144
-0;
-#X obj 113 111 cnv 1 3 2 empty \$0-midiIconIn empty 20 12 0 14 -1 -262144
-0;
-#X obj 123 115 cnv 1 2 2 empty \$0-midiIconIn empty 20 12 0 14 -1 -262144
-0;
-#X obj 124 116 cnv 1 2 2 empty \$0-midiIconIn empty 20 12 0 14 -1 -262144
-0;
-#X obj 125 117 cnv 1 2 2 empty \$0-midiIconIn empty 20 12 0 14 -1 -262144
-0;
-#X obj 126 118 cnv 1 2 2 empty \$0-midiIconIn empty 20 12 0 14 -1 -262144
-0;
-#X obj 127 119 cnv 1 2 2 empty \$0-midiIconIn empty 20 12 0 14 -1 -262144
-0;
-#X obj 111 119 cnv 1 2 2 empty \$0-midiIconIn empty 20 12 0 14 -1 -262144
-0;
-#X obj 112 118 cnv 1 2 2 empty \$0-midiIconIn empty 20 12 0 14 -1 -262144
-0;
-#X obj 113 117 cnv 1 2 2 empty \$0-midiIconIn empty 20 12 0 14 -1 -262144
-0;
-#X obj 114 116 cnv 1 2 2 empty \$0-midiIconIn empty 20 12 0 14 -1 -262144
-0;
-#X obj 115 115 cnv 1 2 2 empty \$0-midiIconIn empty 20 12 0 14 -1 -262144
-0;
-#X obj 111 112 cnv 1 3 2 empty \$0-midiIconIn empty 20 12 0 14 -1 -262144
-0;
-#X obj 109 113 cnv 1 3 2 empty \$0-midiIconIn empty 20 12 0 14 -1 -262144
-0;
-#X obj 124 111 cnv 1 3 2 empty \$0-midiIconIn empty 20 12 0 14 -1 -262144
-0;
-#X obj 126 112 cnv 1 3 2 empty \$0-midiIconIn empty 20 12 0 14 -1 -262144
-0;
-#X obj 128 113 cnv 1 3 2 empty \$0-midiIconIn empty 20 12 0 14 -1 -262144
-0;
+#X obj 119 116 cnv 1 2 7 empty \$0-midiIconIn empty 20 12 0 14 -233017
+-262144 0;
+#X obj 113 111 cnv 1 3 2 empty \$0-midiIconIn empty 20 12 0 14 -233017
+-262144 0;
+#X obj 123 115 cnv 1 2 2 empty \$0-midiIconIn empty 20 12 0 14 -233017
+-262144 0;
+#X obj 124 116 cnv 1 2 2 empty \$0-midiIconIn empty 20 12 0 14 -233017
+-262144 0;
+#X obj 125 117 cnv 1 2 2 empty \$0-midiIconIn empty 20 12 0 14 -233017
+-262144 0;
+#X obj 126 118 cnv 1 2 2 empty \$0-midiIconIn empty 20 12 0 14 -233017
+-262144 0;
+#X obj 127 119 cnv 1 2 2 empty \$0-midiIconIn empty 20 12 0 14 -233017
+-262144 0;
+#X obj 111 119 cnv 1 2 2 empty \$0-midiIconIn empty 20 12 0 14 -233017
+-262144 0;
+#X obj 112 118 cnv 1 2 2 empty \$0-midiIconIn empty 20 12 0 14 -233017
+-262144 0;
+#X obj 113 117 cnv 1 2 2 empty \$0-midiIconIn empty 20 12 0 14 -233017
+-262144 0;
+#X obj 114 116 cnv 1 2 2 empty \$0-midiIconIn empty 20 12 0 14 -233017
+-262144 0;
+#X obj 115 115 cnv 1 2 2 empty \$0-midiIconIn empty 20 12 0 14 -233017
+-262144 0;
+#X obj 111 112 cnv 1 3 2 empty \$0-midiIconIn empty 20 12 0 14 -233017
+-262144 0;
+#X obj 109 113 cnv 1 3 2 empty \$0-midiIconIn empty 20 12 0 14 -233017
+-262144 0;
+#X obj 124 111 cnv 1 3 2 empty \$0-midiIconIn empty 20 12 0 14 -233017
+-262144 0;
+#X obj 126 112 cnv 1 3 2 empty \$0-midiIconIn empty 20 12 0 14 -233017
+-262144 0;
+#X obj 128 113 cnv 1 3 2 empty \$0-midiIconIn empty 20 12 0 14 -233017
+-262144 0;
 #X connect 0 0 1 0;
 #X connect 0 1 2 0;
 #X connect 1 0 10 0;
@@ -3452,32 +3468,32 @@ stereo 5 9 0 10 -262144 -1 0;
 #X msg 278 311 \; \$1-keyStatusCanvas color 0 10;
 #X obj 100 100 cnv 15 101 25 empty \$0-keyStatusCanvas keys 32 9 0
 10 -262144 -233017 0;
-#X obj 106 108 cnv 1 17 17 empty \$0-keyIconIn empty 20 12 0 14 -233017
+#X obj 106 108 cnv 1 17 17 empty \$0-keyIconIn empty 20 12 0 14 -1
 -262144 0;
 #X obj 107 109 cnv 10 15 15 empty empty empty 20 12 0 14 -262144 -262144
 0;
-#X obj 111 112 cnv 1 1 9 empty \$0-keyIconIn empty 20 12 0 14 -233017
--262144 0;
-#X obj 116 113 cnv 1 1 1 empty \$0-keyIconIn empty 20 12 0 14 -233017
--262144 0;
-#X obj 117 112 cnv 1 1 1 empty \$0-keyIconIn empty 20 12 0 14 -233017
--262144 0;
-#X obj 115 117 cnv 1 1 1 empty \$0-keyIconIn empty 20 12 0 14 -233017
--262144 0;
-#X obj 116 118 cnv 1 1 1 empty \$0-keyIconIn empty 20 12 0 14 -233017
--262144 0;
-#X obj 117 119 cnv 1 1 1 empty \$0-keyIconIn empty 20 12 0 14 -233017
--262144 0;
-#X obj 118 120 cnv 1 1 1 empty \$0-keyIconIn empty 20 12 0 14 -233017
--262144 0;
-#X obj 115 114 cnv 1 1 1 empty \$0-keyIconIn empty 20 12 0 14 -233017
--262144 0;
-#X obj 114 115 cnv 1 1 1 empty \$0-keyIconIn empty 20 12 0 14 -233017
--262144 0;
-#X obj 113 116 cnv 1 1 1 empty \$0-keyIconIn empty 20 12 0 14 -233017
--262144 0;
-#X obj 112 117 cnv 1 1 1 empty \$0-keyIconIn empty 20 12 0 14 -233017
--262144 0;
+#X obj 111 112 cnv 1 1 9 empty \$0-keyIconIn empty 20 12 0 14 -1 -262144
+0;
+#X obj 116 113 cnv 1 1 1 empty \$0-keyIconIn empty 20 12 0 14 -1 -262144
+0;
+#X obj 117 112 cnv 1 1 1 empty \$0-keyIconIn empty 20 12 0 14 -1 -262144
+0;
+#X obj 115 117 cnv 1 1 1 empty \$0-keyIconIn empty 20 12 0 14 -1 -262144
+0;
+#X obj 116 118 cnv 1 1 1 empty \$0-keyIconIn empty 20 12 0 14 -1 -262144
+0;
+#X obj 117 119 cnv 1 1 1 empty \$0-keyIconIn empty 20 12 0 14 -1 -262144
+0;
+#X obj 118 120 cnv 1 1 1 empty \$0-keyIconIn empty 20 12 0 14 -1 -262144
+0;
+#X obj 115 114 cnv 1 1 1 empty \$0-keyIconIn empty 20 12 0 14 -1 -262144
+0;
+#X obj 114 115 cnv 1 1 1 empty \$0-keyIconIn empty 20 12 0 14 -1 -262144
+0;
+#X obj 113 116 cnv 1 1 1 empty \$0-keyIconIn empty 20 12 0 14 -1 -262144
+0;
+#X obj 112 117 cnv 1 1 1 empty \$0-keyIconIn empty 20 12 0 14 -1 -262144
+0;
 #X connect 0 0 1 0;
 #X connect 1 0 2 0;
 #X connect 1 1 3 0;
@@ -3495,7 +3511,7 @@ stereo 5 9 0 10 -262144 -1 0;
 4;
 #X obj 38 79 noguitgl;
 #X obj 6 63 t b;
-#X obj 0 0 cnv 15 101 18 \$0-switchCanvas2 \$0-switchCanvas2In midi
+#X obj 0 0 cnv 15 101 18 \$0-switchCanvas2 \$0-switchCanvas2In keys
 72 9 0 10 -262144 -1 0;
 #X obj 0 0 cnv 15 18 18 \$0-switchCanvas \$0-switchCanvasIn show: 5
 9 0 10 -262144 -128992 0;
@@ -3520,7 +3536,7 @@ label \$1;
 #X coords 0 -1 1 1 101 18 2 0 0;
 #X restore 881 356 pd showmidi;
 #N canvas 66 398 472 295 info_huelle 0;
-#X obj 0 0 info/midiKeysinfo 3708;
+#X obj 0 0 info/midiKeysinfo 0;
 #X coords 0 -1 1 1 442 285 2 0 0;
 #X restore 528 34 pd info_huelle;
 #X obj 646 1 bangctl2 themeLight light \$0;
