@@ -13,6 +13,11 @@ spi.max_speed_hz=1000000
 waitTime = .1
 bounceTime = 0.1
 
+btn1alreadyPressed = False
+btn2alreadyPressed = False
+btn3alreadyPressed = False
+btn4alreadyPressed = False
+
 GPIO.setmode(GPIO.BCM)
 ## GPIO.setup(4, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(4, GPIO.IN)
@@ -41,10 +46,39 @@ def readadc(channel):
     return v;
 
 while True:
+    btn1pressed = not GPIO.input(4)
+    btn2pressed = not GPIO.input(17)
+    btn3pressed = not GPIO.input(18)
+    btn4pressed = not GPIO.input(27)
+
     input_right = GPIO.input(4)
     input_left = GPIO.input(17)
     input_down = GPIO.input(18)
     input_up = GPIO.input(27)
+
+    if btn1pressed and not btn1alreadyPressed:
+        print('1 Pressed')
+        message = '8 1'
+        send2Pd(message)
+    btn1alreadyPressed = btn1pressed
+
+    if btn2pressed and not btn2alreadyPressed:
+        print('2 Pressed')
+        message = '8 2'
+        send2Pd(message)
+    btn2alreadyPressed = btn2pressed
+
+    if btn3pressed and not btn3alreadyPressed:
+        print('3 Pressed')
+        message = '8 3'
+        send2Pd(message)
+    btn3alreadyPressed = btn3pressed
+
+    if btn4pressed and not btn4alreadyPressed:
+        print('4 Pressed')
+        message = '8 4'
+        send2Pd(message)
+    btn4alreadyPressed = btn4pressed
 
     values = [0]*8
     
@@ -52,27 +86,6 @@ while True:
         values[i] = readadc(i)
         message = str(i) + ' ' + str(values[i]) # make a string for use with Pdsend
         send2Pd(message)
-    if input_right == False:
-        print('Right Pressed')
-        message = '8 1'
-        send2Pd(message)
-        time.sleep(bounceTime)
-    elif input_left == False:
-        print('Left Pressed')
-        message = '8 2'
-        send2Pd(message)
-        time.sleep(bounceTime)
-    elif input_down == False:
-        print('Down Pressed')
-        message = '8 3'
-        send2Pd(message)
-        time.sleep(bounceTime)
-    elif input_up == False:
-        print('Up Pressed')
-#        values.insert(8,41)
-        message = '8 4'
-        send2Pd(message)
-        time.sleep(bounceTime)
 
 # consider creating a message that has all values in one string rather than separate messages
 #    print('| {0:>4} | {1:>4} | {2:>4} | {3:>4} | {4:>4} | {5:>4} | {6:>4} | {7:>4} |'.format(*values))
