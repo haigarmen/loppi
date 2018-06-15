@@ -10,8 +10,8 @@ spi = spidev.SpiDev()
 spi.open(0,0)
 spi.max_speed_hz=1000000
 
-waitTime = .05
-bounceTime = 0.01
+waitTime = .1
+bounceTime = 0.1
 
 GPIO.setmode(GPIO.BCM)
 ## GPIO.setup(4, GPIO.IN, pull_up_down=GPIO.PUD_UP)
@@ -54,23 +54,23 @@ while True:
         send2Pd(message)
     if input_right == False:
         print('Right Pressed')
-        message = '9 1'
+        message = '8 1'
         send2Pd(message)
         time.sleep(bounceTime)
     elif input_left == False:
         print('Left Pressed')
-        message = '9 2'
+        message = '8 2'
         send2Pd(message)
         time.sleep(bounceTime)
     elif input_down == False:
         print('Down Pressed')
-        message = '9 3'
+        message = '8 3'
         send2Pd(message)
         time.sleep(bounceTime)
     elif input_up == False:
         print('Up Pressed')
 #        values.insert(8,41)
-        message = '9 4'
+        message = '8 4'
         send2Pd(message)
         time.sleep(bounceTime)
 

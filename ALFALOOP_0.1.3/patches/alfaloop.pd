@@ -1,5 +1,5 @@
-#N canvas 11 23 772 704 10;
-#N canvas 521 33 606 426 stuff 1;
+#N canvas 482 201 1004 704 10;
+#N canvas 164 709 606 426 stuff 1;
 #X text 52 321 creating-order in alfaloop.pd: [pd stuff] / [engine]
 / [pd pd settings] / [pd ctl_huelle] / keys_midi activ/passive / show:keys_midi
 / theme-buttons / [pd info];
@@ -1423,7 +1423,7 @@ color 16 22;
 #X connect 3 0 2 0;
 #X connect 7 0 8 0;
 #X restore 251 160 pd graphics;
-#N canvas 326 242 869 488 midi_receive 1;
+#N canvas 325 248 869 488 midi_receive 0;
 #X obj 485 52 expr $f1/127;
 #X obj 335 52 expr $f1/127;
 #X obj 335 109 s \$0-ducking;
@@ -1611,6 +1611,7 @@ color 16 22;
 #X obj 190 105 change 127;
 #X obj 193 80 r overBtn;
 #X obj 506 85 r feedbackValue;
+#X obj 341 83 r duckingValue;
 #X connect 0 0 10 0;
 #X connect 1 0 2 0;
 #X connect 6 0 4 0;
@@ -1659,6 +1660,7 @@ color 16 22;
 #X connect 54 0 52 0;
 #X connect 54 0 53 0;
 #X connect 55 0 10 0;
+#X connect 56 0 2 0;
 #X restore 251 108 pd midi_receive;
 #N canvas 667 50 350 130 audio 0;
 #N canvas 356 401 843 302 input_and_output 0;
@@ -2873,7 +2875,7 @@ connect 0 0 1 0 \; pd-\$2-audioHome connect 2 0 4 0 \;;
 #X connect 5 0 6 0;
 #X connect 6 0 7 0;
 #X restore 396 82 pd duck&overOffset;
-#N canvas 613 50 505 492 avoid_editmode 0;
+#N canvas 802 498 505 492 avoid_editmode 0;
 #X obj -162 13 keyname;
 #X obj -123 39 sel Control_L Control_R;
 #X obj -162 91 spigot;
@@ -2890,10 +2892,6 @@ connect 0 0 1 0 \; pd-\$2-audioHome connect 2 0 4 0 \;;
 #X obj -195 303 spigot;
 #X obj 29 49 loadbang;
 #X msg -108 287 1;
-#X msg -168 355 \; pd-ALFALOOP.pd editmode 1 \; pd-alfaloop.pd editmode
-1;
-#X msg -195 405 \; pd-ALFALOOP.pd editmode 0 \; pd-alfaloop.pd editmode
-0;
 #X obj -195 329 t b b;
 #X obj -66 261 noguitgl;
 #X obj -66 287 expr 1-$f1;
@@ -2935,6 +2933,10 @@ connect 0 0 1 0 \; pd-\$2-audioHome connect 2 0 4 0 \;;
 #X connect 14 0 8 0;
 #X connect 14 1 11 0;
 #X restore -66 235 pd esc;
+#X msg -168 355 \; ALFALOOP.pd editmode 1 \; alfaloop.pd editmode 1
+;
+#X msg -192 405 \; ALFALOOP.pd editmode 0 \; alfaloop.pd editmode 0
+;
 #X connect 0 0 2 0;
 #X connect 0 1 1 0;
 #X connect 1 0 3 0;
@@ -2954,19 +2956,15 @@ connect 0 0 1 0 \; pd-\$2-audioHome connect 2 0 4 0 \;;
 #X connect 10 0 13 0;
 #X connect 11 0 6 0;
 #X connect 12 0 13 1;
-#X connect 13 0 18 0;
+#X connect 13 0 16 0;
 #X connect 14 0 15 0;
-#X connect 14 0 18 0;
+#X connect 14 0 16 0;
 #X connect 14 0 3 0;
 #X connect 15 0 13 1;
-#X connect 18 0 17 0;
-#X connect 18 1 16 0;
-#X connect 19 0 20 0;
-#X connect 20 0 21 0;
-#X connect 20 0 13 1;
-#X connect 21 0 16 0;
-#X connect 21 1 17 0;
-#X connect 22 0 19 0;
+#X connect 17 0 18 0;
+#X connect 18 0 19 0;
+#X connect 18 0 13 1;
+#X connect 20 0 17 0;
 #X restore 251 212 pd avoid_editmode;
 #X msg 331 248 0;
 #X text 363 241 reset loop-count (dangerous!);
@@ -3236,15 +3234,15 @@ connect 0 0 1 0 \; pd-\$2-latencyHome connect 2 0 3 0 \;;
 #X connect 25 0 27 0;
 #X restore 920 585 pd stuff;
 #X obj 0 0 cnv 15 983 575 empty \$0-settingsBg ALFALOOP_0.1.3 7 10
-0 11 -99865 -262144 0;
+0 11 -166441 -262144 0;
 #N canvas 0 50 450 300 cpu_load 0;
 #X obj 100 100 cnv 12 105 14 empty \$0-settingsFont empty 108 10 0
-11 -262144 -262144 0;
-#X obj 100 101 cnv 1 11 12 \$0-loadMeterCanvas \$0-loadMeterCanvasIn
-cpu:7% 111 6 0 10 -99865 -262144 0;
+11 -33289 -262144 0;
+#X obj 100 101 cnv 1 16 12 \$0-loadMeterCanvas \$0-loadMeterCanvasIn
+cpu:12% 111 6 0 10 -166441 -262144 0;
 #X obj 100 100 cnv 4 4 14 empty \$0-settingsFont empty 108 10 0 11
--262144 -262144 0;
-#X obj 100 100 cnv 3 3 14 empty \$0-settingsBg empty 20 12 0 14 -99865
+-33289 -262144 0;
+#X obj 100 100 cnv 3 3 14 empty \$0-settingsBg empty 20 12 0 14 -166441
 -262144 0;
 #X coords 0 -1 1 1 105 14 2 100 100;
 #X restore 345 3 pd cpu_load;
@@ -3257,7 +3255,7 @@ cpu:7% 111 6 0 10 -99865 -262144 0;
 #X obj 108 0 infobng alfaloop \$0;
 #X obj 518 0 infobng themes \$0;
 #X obj 675 336 cnv 15 308 239 empty \$0-settingsBg midi/keys 7 10 0
-11 -99865 -262144 0;
+11 -166441 -262144 0;
 #X obj 961 336 infobng midiKeys \$0;
 #X obj 540 1 bangctl2 themeDark dark \$0;
 #X obj 752 1 numbers2 themeBack background 0 22 \$0;
@@ -3285,14 +3283,14 @@ label \$1;
 #X restore 964 1 pd infosize;
 #X obj 72 64 engine \$0;
 #N canvas 22 399 719 294 settings 0;
-#X obj 0 0 cnv 15 662 239 empty \$0-settingsBg empty 20 12 0 14 -99865
+#X obj 0 0 cnv 15 662 239 empty \$0-settingsBg empty 20 12 0 14 -166441
 -262144 0;
 #X obj 1 0 cnv 15 661 238 empty empty empty 20 12 0 14 -262144 -66577
 0;
 #X obj 225 0 cnv 15 212 99 empty \$0-settingsBg loop(cross-fade/length)
-7 10 0 11 -99865 -262144 0;
+7 10 0 11 -166441 -262144 0;
 #X obj 0 80 cnv 15 212 59 empty \$0-settingsBg input/output 7 10 0
-11 -99865 -262144 0;
+11 -166441 -262144 0;
 #N canvas 687 337 390 169 output 0;
 #X obj 2 0 nbx 10 18 0 8 0 0 \$0-audioOutputCtl \$0-audioOutputCtlIn
 empty 0 -8 0 10 -262144 -1 -1 1 256;
@@ -3317,12 +3315,12 @@ stereo 5 9 0 10 -262144 -1 0;
 #X coords 0 -1 1 1 104 18 2 100 100;
 #X restore 107 120 pd output2;
 #X obj 0 0 cnv 15 212 59 empty \$0-settingsBg latency(ms) 7 10 0 11
--99865 -262144 0;
+-166441 -262144 0;
 #X obj 1 40 bangctl latency_test latency-test \$0;
-#X obj 450 0 cnv 15 212 59 empty \$0-settingsBg volumes 7 10 0 11 -99865
+#X obj 450 0 cnv 15 212 59 empty \$0-settingsBg volumes 7 10 0 11 -166441
 -262144 0;
 #X obj 450 80 cnv 15 212 159 empty \$0-settingsBg auto(over/rec) 7
-10 0 11 -99865 -262144 0;
+10 0 11 -166441 -262144 0;
 #X obj 107 100 cnv 15 104 18 empty \$0-settingsText empty 6 10 0 11
 -262144 -33289 0;
 #X obj 451 200 cnv 15 104 18 empty \$0-threshOnCanvasIn ON 6 9 0 11
@@ -3334,19 +3332,19 @@ stereo 5 9 0 10 -262144 -1 0;
 #X obj 451 160 cnv 15 210 38 empty empty empty 20 12 0 14 -262144 -66577
 0;
 #X obj 451 179 cnv 15 105 19 empty \$0-settingsBg empty 20 12 0 14
--99865 -262144 0;
+-166441 -262144 0;
 #X obj 0 160 cnv 15 212 79 empty \$0-settingsBg recording 7 10 0 11
--99865 -262144 0;
+-166441 -262144 0;
 #X obj 8 200 hradio 38 1 0 5 \$0-hradio2recCtl empty empty 0 -8 0 10
 -262144 -1 -1 0;
-#X obj 226 60 cnv 15 210 38 empty \$0-delNowCanvas delay:348 6 20 0
+#X obj 226 60 cnv 15 210 38 empty \$0-delNowCanvas delay:227 6 20 0
 11 -262144 -1 0;
 #X obj 225 120 cnv 15 212 119 empty \$0-settingsBg fades(over/ducking)
-7 10 0 11 -99865 -262144 0;
+7 10 0 11 -166441 -262144 0;
 #X obj 226 160 cnv 15 210 38 empty empty empty 20 12 0 14 -262144 -66577
 0;
 #X obj 226 160 cnv 15 105 19 empty \$0-settingsBg empty 20 12 0 14
--99865 -262144 0;
+-166441 -262144 0;
 #X obj 415 120 infobng fades \$0;
 #X obj 557 40 cnv 15 104 18 empty \$0-settingsText empty 6 10 0 11
 -262144 -33289 0;
@@ -3389,8 +3387,8 @@ stereo 5 9 0 10 -262144 -1 0;
 #X coords 0 -1 1 1 662 239 2 0 0;
 #X restore 0 336 pd settings;
 #N canvas 113 114 664 640 ctl_huelle 0;
-#X obj 0 19 keys 1004;
-#X obj 0 0 clearall Key 1004;
+#X obj 0 19 keys 2076;
+#X obj 0 0 clearall Key 2076;
 #X coords 0 -1 1 1 306 192 2 0 0;
 #X restore 676 382 pd ctl_huelle;
 #N canvas 0 50 611 453 ctl_panel 0;
@@ -3536,7 +3534,7 @@ label \$1;
 #X coords 0 -1 1 1 101 18 2 0 0;
 #X restore 881 356 pd showmidi;
 #N canvas 66 398 472 295 info_huelle 0;
-#X obj 0 0 info/midiKeysinfo 0;
+#X obj 0 0 info/autoinfo 2076;
 #X coords 0 -1 1 1 442 285 2 0 0;
 #X restore 528 34 pd info_huelle;
 #X obj 646 1 bangctl2 themeLight light \$0;
